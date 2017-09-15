@@ -2,17 +2,16 @@ language: bash
 
 env:
   global:
-    - secure: "JCsqVw7ew+Nn+r77PvjdkOpAnE2wumWAZpwkWYATTmXZHQ1zO0ROlTPT4bxahL1GoVoumQ3KV1y5ekfr2a6YfUBqbd/JUJOPqCTHHbSjyZt4YoDCLT9I3NOBSTBp2mQq6y47190DGNLD2qf2SGyDXuutwIyJbwrkQKLzr/rYQaJYy93xn4dTFgONKYbCnAAjDIwzlkwLJ/lXYNblnGjuqaJMCVAyOM+wjAcCeo3bDHt9ut63ETkA024h/B68HJPeds1ZAcOPFDI8OYGDv5UhqlTk+R+LX2ecg0zyQLsM2hNhBj16kLNyillkJoc/CRF1YQtYWaFDD3aqNPFSHOK5jemOpgKK3Z/3ESswvU9NazYyRoVz8mdVNpw71pFeIjqjfXcNFhDM6X+uyxoCJ10bVbt9q+nHjPYyLrBrMuYfDpjkhh410BYaCbl/q7RUw7P5L/uMC70dca///rpp0PsobbciXkbQJ7jTb1W2CB1ZzCDzbNMlNSfPRJKetL/5M9+e7Z1lP30IYPMyO0bDDpE2F8YaaJx3Q7ldbVeOaaLQP/q9gOe0hTOG3FNNMtPP9kJthmsj0fqDwnVyH0t6STuaOVjIOxD+VPTp43L5BcxUTrdaa0k+Pc6SBrDhb5Ah77m/ZghkmHXoQJWvxI+vJtyfHl8zTq6auZkTO/jdC453gQQ="
-    - secure: "BHN21uUmkJMfjfOixx271u8eVPag2n+pHu8jOHUT52ni66cZEzdeXmHMOQAdqYeNAHmxWyjr9yb9XT9BMoi1MWGPnh654yJMwLNdolTdPu/EY+AOW1z51r1SIMQm7dYlD6ine6XoWppWSccPLoRIXv7pcaTdhWI/680SXGsWFbq8dyQNCShFFYE1icpBNF+CPim/k4vhke3fqeWgjUkyFGhkEfaaUP+2qQEUaqPXxWAhvGnDWFyUNuokqXtlf6pTo4Ha4fZm0hPGsToYRxW0wNogakh/dAtcmjuKmfMlTERdEuy/bMdcUgrF3Kzvkf6rUzR6N+8sT49ESXGPxqYBFl78obYzPckuHXSjp4I2TeroB8HKCDBQPx9uxAF8ww+tS3hP3LJnyTGpKoC2WpNlC3lFsDnxNbeDDMdykoSYbhq38tpmxFrY5y2+LPcGyJERAl9xVilLF9WDXc8D+LndQz1dpPUG+zBsHNDj29LcvYmuhEaBVP+rxAms5ZQpr1z+Omo8ZvTD9nsWf89GsbJWEc2bJ+2/l3sh63fbjg9gINnpub92GGvkCQfpIyqKekSkxCrKtB3LO5pucAHWslzzmp7YUYath2NntAPKdDJmiVEQ6Mim2aOhvFbp19zEwvBY/+I3iaQB9BeHcqrzYeiQ8/X280ifHva9ssL4TDalvW4=" 
     - FUGUE_RELEASE="testing" 
     - FUGUE_VERSION="0.40.14-2768"
 
 before_install:
-  - sudo pip install awscli
+  - sudo pip install awscli credstash
   - aws s3 cp s3://saboRepo/${FUGUE_RELEASE}/fugue-client_${FUGUE_VERSION}_amd64.deb fugue-cli.deb
 
 install:
-  - sudo dpkg --install fugue-cli.deb  
+  - sudo dpkg --install fugue-cli.deb
+  - credstash -r us-east-1 list
 
 script:
   make 

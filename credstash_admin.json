@@ -1,0 +1,32 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "kms:Decrypt"
+        "kms:GenerateDataKey"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:kms:us-east-1:AWSACCOUNTID:key/KEY-GUID"
+    },
+    {
+      "Action": [
+        "dynamodb:PutItem"
+        "dynamodb:GetItem",
+        "dynamodb:Query",
+        "dynamodb:Scan"
+        "dynamodb:CreateTable",
+        "dynamodb:DescribeTable"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:dynamodb:us-east-1:AWSACCOUNTID:table/credential-store"
+    },
+    {
+      "Action": [
+        "dynamodb:ListTables"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
+}
