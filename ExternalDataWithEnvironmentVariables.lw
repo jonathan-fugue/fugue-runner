@@ -4,19 +4,19 @@ import Fugue.AWS.Pattern.Network as Network
 import Fugue.AWS as AWS
 
 region: AWS.Region.fromString(String.getEnvOrError("DEMO_REGION")) ?| AWS.Us-east-1
-debugRegion: Debug.trace {message: "Found:" ++ String.getEnvOrError("DEMO_REGION")}
+debugRegion: Debug.trace {message: "Region: " ++ String.getEnvOrError("DEMO_REGION")}
 
 name: String.getEnvOrError("DEMO_NAME")
-debugName: Debug.trace {message: "Found:" ++ name}
+debugName: Debug.trace {message: "Name: " ++ name}
 
 cidr: String.getEnvOrError("DEMO_CIDR")
-debugCidr: Debug.trace {message: "Found:" ++ cidr}
+debugCidr: Debug.trace {message: "Cidr: " ++ cidr}
 
 pubSubA: String.getEnvOrError("DEMO_PUBSUBA")
-debugPubSubA: Debug.trace {message: "Found:" ++ pubSubA}
+debugPubSubA: Debug.trace {message: "PubSubA: " ++ pubSubA}
 
 pubSubB: String.getEnvOrError("DEMO_PUBSUBB")
-debugPubSubB: Debug.trace {message: "Found:" ++ pubSubB}
+debugPubSubB: Debug.trace {message: "PubSubB: " ++ pubSubB}
 
 demoNet:
   Network.new {
