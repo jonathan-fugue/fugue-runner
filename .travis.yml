@@ -12,6 +12,7 @@ before_install:
 install:
   - sudo dpkg --install fugue-cli.deb
   - credstash -r us-east-1 list
+  - credstash -r us-east-1 getall
 
 script:
   make 
