@@ -6,6 +6,7 @@ env:
   global:
     - FUGUE_RELEASE="testing" 
     - FUGUE_VERSION="0.40.14-2768"
+    - ENV="dev"
 
 before_install:
   - sudo pip install awscli credstash
@@ -17,4 +18,9 @@ install:
   - credstash -r us-east-1 getall
 
 script:
-  make 
+  - DEMO_CIDR=$(bash -c 'credstash get fugue-runner.${ENV}.cidr')
+  - DEMO_NAME=$(bash -c 'credstash get fugue-runner.${ENV}.cidr')
+  - DEMO_REGION=$(bash -c 'credstash get fugue-runner.${ENV}.cidr')
+  - DEMO_PUBSUBA=$(bash -c 'credstash get fugue-runner.${ENV}.cidr')
+  - DEMO_PUBSUBB=$(bash -c 'credstash get fugue-runner.${ENV}.cidr')
+  - make 
