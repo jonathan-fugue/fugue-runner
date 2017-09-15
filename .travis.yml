@@ -3,10 +3,11 @@ sudo: required
 dist: trusty
 
 env:
-  - ENV="dev"
   global:
     - FUGUE_RELEASE="testing" 
     - FUGUE_VERSION="0.40.14-2768"
+  matrix:
+    - ENV="dev"
 
 before_install:
   - sudo pip install awscli credstash
